@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MonSite - Numéro 1 de tout le web mondial</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Kalam:wght@700&family=Open+Sans:wght@400;700&display=swap">
+    <!--
+        "./css/reset" est un chemin relatif à l'URL présente dans le navigateur
+        - "/" permet de séparer les dossiers
+        - "/" en début de chemin, il désigne le dossier racine (le premier de l'URL)
+        - "." désigne le dossier du fichier actuel de l'URL
+        - ".." désigne le dossier parent du dossier du fichier actuel de l'URL
+    -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <header>
+        <!-- Bloc titre + menu -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="logo">Mon Site</div>
+
+                <!-- Menu -->
+                <div class="menu-wrapper" id="menu-wrapper">
+                    <button type="button" id="btn-menu">
+                        <span>Menu</span>
+                    </button>
+
+                    <nav class="main-menu">
+                        <!-- Niveau 1 -->
+                        <ul>
+                            <li><a href="#">Lien 1</a></li>
+
+                            <li>
+                                <a href="#">Lien 2</a>
+                                <!-- Niveau 2 -->
+                                <ul>
+                                    <li><a href="#">Lien 2-1</a></li>
+                                    <li>
+                                        <a href="#">Lien 2-2</a>
+                                        <!-- Niveau 3 -->
+                                        <ul>
+                                            <li><a href="#">Lien 2-2-1</a></li>
+                                            <li>
+                                                <a href="#">Lien 2-2-2</a>
+                                                <!-- Niveau 4 -->
+                                                <ul>
+                                                    <li><a href="#">Lien 2-2-2-1</a></li>
+                                                    <li><a href="#">Lien 2-2-2-2</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="#">Lien 2-3</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="#">Lien 3</a></li>
+                            <li>
+                                <a href="#">Lien 4</a>
+                                <!-- Niveau 2 -->
+                                <ul>
+                                    <li><a href="#">Lien 4-1</a></li>
+                                    <li><a href="#">Lien 4-2</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Lien 5</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galerie d'image(s) -->
+        <div class="gallery">
+            <!-- <picture> permet de préciser plusieurs images différentes en fonction d'un media query -->
+            <picture>
+                <source media="(max-width: 450px)" srcset="./img/landscape-01-450.jpg">
+                <source media="(max-width: 768px)" srcset="./img/landscape-01-768.jpg">
+                <source media="(max-width: 992px)" srcset="./img/landscape-01-992.jpg">
+
+                <img src="./img/landscape-01.jpg" alt="Châlet isolé en montagne">
+            </picture>
+        </div>
+    </header>
+
+    <main>
+        <!-- Contenu principal -->
+        <div class="main-content">
+            <div class="container">
+                <section id="introduction">
+                    <h1>Bonjour</h1>
+
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem atque praesentium nulla, placeat
+                        quis, esse officia illo sunt fugiat voluptate quisquam veniam voluptatem maiores blanditiis
+                        repellendus fugit distinctio molestias et.
+                        Omnis id voluptates nesciunt? Velit excepturi debitis, soluta vel quaerat, nostrum ab nobis
+                        quasi ex porro ipsam fuga natus atque earum nihil consectetur fugiat expedita? Hic fuga iste
+                        iusto quae.
+                    </p>
+                </section>
+
+                <section id="latest-news">
+                    <h2>Derniers articles</h2>
+                    <ol>
+                        <li>
+                            <a href="#" class="product-item">
+                                <div class="product-info">
+                                    <h3>Bugatti Veyron</h3>
+                                    <p>
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus vero eveniet
+                                        quod a temporibus ullam!
+                                    </p>
+                                </div>
+                                <!--
+                                    L'image se met après le H3 pour qu'elle soit associée à celui-ci
+                                    Même si visuellement elle est affichée avant
+                                -->
+                                <img src="./img/cars/bugatti-veyron.jpg" alt="Bugatti Veyron">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="product-item">
+                                <div class="product-info">
+                                    <h3>Peugeot 307 SW</h3>
+                                    <p>
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus vero eveniet
+                                        quod a temporibus ullam!
+                                    </p>
+                                </div>
+                                <img src="./img/cars/peugeot-307-sw.jpg" alt="Peugeot 307 SW">
+                            </a>
+                        </li>
+                    </ol>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="top-footer">
+            <div class="container">
+                <!-- <address> représente les coordonées du propriétaire du site -->
+                <address>
+                    <p class="h3">Mon Site</p>
+                    <p>
+                        50, rue Pierre Sémard<br>
+                        66270 LE SOLER
+                    </p>
+                    <p>
+                        Tél: <a href="tel:+33468928978">04 68 92 89 78</a>
+                    </p>
+                </address>
+
+                <div class="site-map">
+                    <div class="h3">Plan du Site</div>
+
+                    <ul>
+                        <!-- Emmet: (li>a[href="#"]{Lien $})*5 -->
+                        <li><a href="#">Lien 1</a></li>
+                        <li><a href="#">Lien 2</a></li>
+                        <li><a href="#">Lien 3</a></li>
+                        <li><a href="#">Lien 4</a></li>
+                        <li><a href="#">Lien 5</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-footer">
+            <div class="container">
+                &copy;2023 Mon Site - <a href="#">CGV</a> - <a href="#">Mentions légales</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

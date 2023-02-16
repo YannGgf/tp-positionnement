@@ -1,0 +1,531 @@
+/* ---------- Généralités ---------- */
+/*
+:root
+Alias pour la balise racine, en HTML5 c'est <html>
+
+On peut y déclarer des variables:
+"--le-nom-que-je-veux: valeurQuejeVeux;
+*/
+:root {
+     /*
+    Couleur sur écran:
+    3 composantes de couleurs qui se mélangent en étant plus ou moins allumées
+    Rouge (red), Vert(green), Bleu(blue)
+
+    Code hexadécimal:
+    - RR VV BB
+    - Valeurs de 00 à FF (en décimal 0 à 255)
+    - Si les 2 "chiffres" de chaque composantes sont identiques, on peut simplifier
+        ex: CCFF88 => CF8
+        Ne fonctionne pas avec par ex CAFF88
+
+    Code RGB ou RGBA:
+    - valeurs pour R,G, et B de 0 à 255 (décimal)
+    - valeurs pour A de 0 à 1 avec virgules. ex: 0.8 = 80% d'opacité
+    - rgb( RRR, VVV, BBB )
+    - rgba( RRR, VVV, BBB, A )
+
+    Code HSL - Hue "teinte" ou "température", Saturation, luminosité
+    - valeurs: H nombre de degrès de 0 à 359, S et L en pourcents 
+    - permet de dériver une couleur plus sombre ou plus claire d'une autre couleur
+        sans changer sa teinte
+    */
+    --bg-color-dark: #c70045;
+    --bg-color-darker-transp: rgba(148, 0, 52, .5);
+    --bg-color-darker: #940034;
+    --bg-color-light: #f5f5f5;
+    --link-color: #fc0;
+    --text-color: #222;
+    --text-color-light: #f5f5f5;
+}
+
+body {
+    /*
+    var(--nom-de-variable) récupère la valeur de la variable
+    */
+    background-color: var(--bg-color-light);
+    color: var(--text-color);
+
+    /* Police de caractère */
+    font-family: 'Open Sans', sans-serif;
+
+    font-size: 16px;
+}
+
+a {
+    font-weight: 700;
+}
+
+    a:focus,
+    a:active {
+        color: var(--link-color);
+    }
+
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3 {
+    font-family: 'Kalam', cursive;
+    text-align: center;
+}
+    
+
+h1,
+.h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+h2,
+.h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+h3,
+.h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+
+/* ---------- Utilitaires ---------- */
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* ---------- Pages ---------- */
+/* ----- Header ----- */
+/* --- Top bar --- */
+.top-bar {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-light);
+    position: relative;
+}
+
+    .top-bar > .container {
+        padding: 0;
+    }
+
+.logo {
+    font-family: 'Bungee Shade', cursive;
+    font-size: 28px;
+    line-height: 32px;
+    padding: 15px;
+}
+
+/* - Menu - */
+/* Bouton */
+#btn-menu {
+    align-items: stretch;
+    background-color: var(--bg-color-darker);
+    border: 1px solid var(--link-color);
+    /* rayon du cercle pour l'arrondi des coins */
+    border-radius: 2px;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    font-size: 0; /* Pour cacher le texte */
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    right: 10px;
+    top: 10px;
+    transition: border-radius 250ms 0ms cubic-bezier(0.97, -0.77, 0.07, 1.59);
+    width: 42px;
+}
+
+    /* Bouton actif (clic ou doigt maintenu) */
+    #btn-menu:active {
+        background-color: var(--bg-color-dark);
+    }
+
+    /* Bouton Menu ouvert */
+    .opened #btn-menu {
+        border-radius: 50%;
+    }
+
+    /* Activation les pseudos éléments */
+    #btn-menu::after,
+    #btn-menu::before {
+        content: '';
+    }
+
+    /* Style des barres du hamburger */
+    #btn-menu span,
+    #btn-menu::after,
+    #btn-menu::before {
+        background-color: var(--link-color);
+        border-radius: 3px;
+        flex: 0 0 6px;
+    }
+
+    /* Barre 1 (::before) */
+    #btn-menu::before {
+        transform-origin: 3px 3px;
+        /* transform permet de créer différentes transformations (rotation, echelle, inclinaison, etc.) */
+        transform: rotateZ( 0 ) translateX( 0 );
+        /* transition permet de demander une animation lorsque une propriété donnée change */
+        transition: transform 250ms 75ms cubic-bezier(0.97, -0.77, 0.07, 1.59);
+    }
+
+        /* Menu ouvert */
+        .opened #btn-menu::before {
+            /* transform permet de créer différentes transformations (rotation, echelle, inclinaison, etc.) */
+            transform: rotateZ( 45deg ) translateX( 5px );
+        }
+
+    /* Barre  (span) */
+    #btn-menu span {
+        transform: rotateX(0);
+        transition: transform 250ms 0ms cubic-bezier(0.97, -0.77, 0.07, 1.59);
+    }
+
+        /* Menu ouvert */
+        .opened #btn-menu span {
+            transform: rotateX(90deg);
+        }
+
+    /* Barre 3 (::after) */
+    #btn-menu::after {
+        transform-origin: 3px 3px;
+        transform: rotateZ( 0 ) translateX( 0 );
+        transition: transform 250ms 150ms cubic-bezier(0.97, -0.77, 0.07, 1.59);
+    }
+
+        /* Menu ouvert */
+        .opened #btn-menu::after {
+            transform: rotateZ( -45deg ) translateX( 5px );
+        }
+
+/* Items de menu */
+.main-menu {
+    display: none;
+    /* permet d'interdire le retour à la ligne du texte */
+    white-space: nowrap;
+}
+
+    .opened .main-menu {
+        display: block;
+    }
+
+/* Tous les <ul> qui ont un ancêtre <ul> qui ont un ancêtre .main-menu */
+/* Tous les <ul> à partir du 2ème niveau */
+.main-menu ul ul {
+    /* display none fait disparaître l'élément */
+    display: none;
+    position: absolute;
+}
+
+/* Tous les <ul> à partir du 2ème niveau */
+.main-menu ul ul ul {
+    left: 100%;
+    top: 0;
+}
+
+.main-menu li {
+    border-top: 1px solid rgba(255, 255, 255, .5);
+    position: relative;
+}
+
+.main-menu a {
+    background-color: var(--bg-color-darker);
+    display: block;
+    padding: 15px;
+    text-align: center;
+}
+
+    .main-menu a:focus,
+    .main-menu a:active {
+        background-color: var(--bg-color-dark);
+    }
+
+/* --- Galerie --- */
+.gallery img,
+.gallery picture {
+    display: block;
+}
+
+.gallery img {
+    height: 250px;
+    /*
+    Permet d'ajuster la manière dont l'image est dessinée dans la balise
+    Ici la taille donnée ne correspond pas aux proprotions, donc par défaut
+    l'image est déformée (mode "fill"). Le mode "cover" permet de faire en sorte
+    que l'image soit recadrée sans déformation (la partie qui déborde sera invisible)
+    */
+    object-fit: cover;
+    width: 100%;
+}
+
+/* ----- Main ----- */
+.main-content {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+    .main-content > .container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+/* --- Articles --- */
+#latest-news ol {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#latest-news .product-item {
+    display: flex;
+    /* On inverse visuellement la photo et le bloc d'info */
+    flex-direction: row-reverse;
+    font-weight: 400;
+}
+
+    #latest-news .product-item img {
+        flex: 0 0 90px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+#latest-news .product-info {
+    background-color: var(--bg-color-darker);
+    color: var(--text-color-light);
+    padding: 10px;
+}
+
+    #latest-news .product-info h3 {
+        font-size: 22px;
+        line-height: 26px;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    #latest-news .product-item:focus .product-info,
+    #latest-news .product-item:active .product-info {
+        background-color: var(--bg-color-dark);
+    }
+
+/* ----- Footer ----- */
+.top-footer,
+.bottom-footer {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.top-footer {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-light);
+
+    /* Justification du texte */
+    text-align: center;
+}
+
+    .top-footer > .container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+
+/* ---------- Responsive ---------- */
+/* ----- A partir de 768px (tablette portrait et plus grand) ----- */
+@media ( min-width: 768px ) {
+
+    /* ----- Footer ----- */
+    .top-footer > .container {
+        flex-direction: row;
+    }
+
+        .top-footer > .container > * {
+            flex-grow: 1;
+        }
+
+}
+
+
+/* ----- Entre 768px et 991px (seulement tablette portrait) ----- */
+@media ( min-width: 768px ) and ( max-width: 991px ) {
+
+    /* ---------- Pages ---------- */
+    /* ----- Header ----- */
+    /* --- Top bar --- */
+    .logo {
+        text-align: center;
+    }
+
+    /* --- Galerie --- */
+    .gallery img {
+        height: 450px;
+    }
+
+    /* ----- Main ----- */
+    /* --- Articles --- */
+    #latest-news ol {
+        flex-direction: row;
+        gap: 30px;
+    }
+
+        #latest-news ol > li {
+            flex-grow: 1;
+        }
+
+        #latest-news .product-item {
+            flex-direction: column-reverse;
+        }
+
+            #latest-news .product-item img {
+                flex-basis: 160px;
+            }
+
+}
+
+
+/* ----- A partir de 992px (Desktop et plus grand) ----- */
+@media ( min-width: 992px ) {
+
+    /* ---------- Généralités ---------- */
+    a:hover {
+        color: var(--link-color);
+    }
+
+
+    /* ---------- Utilitaires ---------- */
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 960px;
+    }
+
+
+    /* ---------- Pages ---------- */
+    /* ----- Header ----- */
+    /* --- Top bar --- */
+    .top-bar {
+        background-color: transparent;
+        position: absolute;
+        width: 100%;
+    }
+
+    .logo {
+        text-shadow: 
+            0 0 50px rgba(0, 0, 0, .5),
+            1px 1px 0 var(--text-color);
+    }
+
+    /* - Menu - */
+    #btn-menu {
+        display: none;
+    }
+
+    .main-menu {
+        display: block;
+    }
+
+        .main-menu a:hover {
+            background-color: var(--bg-color-dark);
+        }
+
+        /* 
+        Tous les <ul> 
+            dont le parent immédiat est un <li> survolé par la souris 
+            lui-même descendant de .main-menu
+        */
+        .main-menu li:hover > ul {
+            display: block;
+        }
+
+        /* <ul> 1er niveau */
+        .main-menu > ul {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* <li> 1er niveau */
+        .main-menu > ul > li {
+            border-top: 0;
+        }
+        
+        /* <a> 1er niveau */
+        .main-menu > ul > li > a {
+            background-color: transparent;
+            text-shadow: 
+                0 0 50px rgba(0, 0, 0, .5),
+                1px 1px 0 var(--text-color);
+        }
+        
+
+    /* --- Galerie --- */
+    .gallery img {
+        /* vh (Viewport Height): pourcentage de la hauteur du viewport (partie visible dans la fenêtre) */
+        height: 80vh;
+    }
+
+    /* ----- Main ----- */
+    .main-content > .container {
+        flex-direction: row;
+    }
+
+    #introduction {
+        flex-grow: 1;
+    }
+
+    /* --- Articles --- */
+    #latest-news {
+        /*
+        flex combine dans l'ordre: flex-grow, flex-shrink, flex-basis
+        - flex-grow: nombre qui indique comment l'élément doit grandir
+        - flex-shrink: nombre qui indique comment l'élément doit subir un rétrécissement
+        - flex-basis: taille de base, dans le sens du "fil" flex, de rendu de l'élément lorsqu'il ne subit l'influence de ses frères
+        */
+        flex: 0 0 300px;
+    }
+
+        #latest-news .product-item {
+            display: block;
+            position: relative;
+        }
+
+            #latest-news .product-item img {
+                display: block;
+                height: 225px;
+                width: 100%;
+            }
+
+        #latest-news .product-info {
+            background-color: var(--bg-color-darker-transp);
+            left: 0;
+            position: absolute;
+            top:0;
+            width: 100%;
+        }
+            #latest-news .product-info h3 {
+                margin-bottom: 0;
+            }
+
+                #latest-news .product-item:hover .product-info h3 {
+                    margin-bottom: 5px;
+                }
+
+            #latest-news .product-info p {
+                display: none;
+            }
+
+            #latest-news .product-item:hover .product-info {
+                background-color: var(--bg-color-dark);
+            }
+
+                #latest-news .product-item:hover .product-info p {
+                    display: block;
+                }
+    
+}

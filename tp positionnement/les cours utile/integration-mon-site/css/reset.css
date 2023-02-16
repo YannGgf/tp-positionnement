@@ -1,0 +1,34 @@
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+address {
+    /* Style de police (italique, oblique, normal) */
+    font-style: normal;
+}
+
+a {
+    /*
+    inherit permet de reprendre un valeur héritée d'un parent,
+    mais qui a été modifiée sur l'élément lui-même
+    */
+    color: inherit;
+    
+    /* "décoration" du texte (souligné, barré, etc.) */
+    text-decoration: none;
+}
+
+button {
+    background-color: transparent;
+    color: inherit;
+    font-size: inherit;
+}
